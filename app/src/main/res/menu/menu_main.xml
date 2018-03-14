@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.cursosdedesarrollo.serviciosandroid.MainActivity">
+    <item
+        android:id="@+id/action_start"
+        android:orderInCategory="100"
+        android:title="@string/action_start"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_stop"
+        android:orderInCategory="100"
+        android:title="@string/action_stop"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_start_intent_service"
+        android:orderInCategory="100"
+        android:title="@string/action_start_intent_service"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_stop_intent_service"
+        android:orderInCategory="100"
+        android:title="@string/action_stop_intent_service"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_start_asynctask"
+        android:orderInCategory="100"
+        android:title="@string/action_start_asynctask"
+        app:showAsAction="never" />
+</menu>

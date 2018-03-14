@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ServiciosAndroid</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_stop">Stop Service</string>
+    <string name="action_start">Start Service</string>
+    <string name="manejo_de_servicios">Manejo de Servicios</string>
+    <string name="titulo_servicio">Servicio de Ejemplo</string>
+    <string name="action_stop_intent_service">Stop Intent Service</string>
+    <string name="action_start_intent_service">Start Intent Service</string>
+    <string name="action_start_asynctask">Lanza Tarea Asíncrona</string>
+</resources>
