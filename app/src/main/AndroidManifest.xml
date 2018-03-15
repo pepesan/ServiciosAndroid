@@ -26,6 +26,7 @@
             android:icon="@mipmap/ic_launcher"
             android:label="@string/titulo_servicio"/>
         <service android:name=".MiIntentService"></service>
+        <service android:name=".BroadcastService"></service>
     </application>
 
 </manifest>

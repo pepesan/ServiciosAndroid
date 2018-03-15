@@ -23,6 +23,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     Intent i;
     Intent intent;
+    public static final String mBroadcastStringAction = "com.cursosdedesarrollo.broadcast.string";
+    public static final String mBroadcastIntegerAction = "com.cursosdedesarrollo.broadcast.integer";
+    public static final String mBroadcastArrayListAction = "com.cursosdedesarrollo.broadcast.arraylist";
+    private IntentFilter mIntentFilter;
     ProgressBar  pbarProgreso;
     private BroadcastReceiver progressReceiver=new  BroadcastReceiver() {
 
@@ -34,6 +38,27 @@ public class MainActivity extends AppCompatActivity {
             }
             else if(intent.getAction().equals(MiIntentService.ACTION_FIN)) {
                 Toast.makeText(MainActivity.this, "Tarea finalizada!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(MainActivity.this, "Broadcast From Service:", Toast.LENGTH_SHORT).show();
+            Log.d("app", "Broadcast From Service: \n");
+            if (intent.getAction().equals(mBroadcastStringAction)) {
+                Toast.makeText(MainActivity.this, intent.getStringExtra("Data"), Toast.LENGTH_SHORT).show();
+                Log.d("app", "Broadcast From Service: \n" +intent.getStringExtra("Data") + "\n\n");
+            } else if (intent.getAction().equals(mBroadcastIntegerAction)) {
+                Toast.makeText(MainActivity.this, ""+intent.getIntExtra("Data", 0), Toast.LENGTH_SHORT).show();
+                        Log.d("app", "Broadcast From Service: \n" +intent.getIntExtra("Data", 0) + "\n\n");
+
+            } else if (intent.getAction().equals(mBroadcastArrayListAction)) {
+                Toast.makeText(MainActivity.this, ""+intent.getStringArrayListExtra("Data").toString(), Toast.LENGTH_SHORT).show();
+                Log.d("app", "Broadcast From Service: \n" +intent.getStringArrayListExtra("Data").toString() + "\n\n");
+                Intent stopIntent = new Intent(MainActivity.this,
+                        BroadcastService.class);
+                stopService(stopIntent);
             }
         }
     };
@@ -94,7 +119,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         pbarProgreso= findViewById(R.id.progressBar);
         setSupportActionBar(toolbar);
+        mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction(mBroadcastStringAction);
+        mIntentFilter.addAction(mBroadcastIntegerAction);
+        mIntentFilter.addAction(mBroadcastArrayListAction);
 
+        Intent serviceIntent = new Intent(this, BroadcastService.class);
+        startService(serviceIntent);
 
     }
     @Override
@@ -104,11 +135,13 @@ public class MainActivity extends AppCompatActivity {
         filter.addAction(MiIntentService.ACTION_PROGRESO);
         filter.addAction(MiIntentService.ACTION_FIN);
         registerReceiver(progressReceiver, filter);
+        registerReceiver(mReceiver, mIntentFilter);
     }
     @Override
     protected void onPause() {
-        super.onPause();
         unregisterReceiver(progressReceiver);
+        unregisterReceiver(mReceiver);
+        super.onPause();
     }
     // Method to start the service
     public void startService() {
