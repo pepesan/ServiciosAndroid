@@ -25,8 +25,6 @@ public class MiIntentService extends IntentService {
 
         for(int i=1; i<=iter; i++) {
             tareaLarga();
-
-            //Comunicamos el progreso
             Intent bcIntent = new Intent();
             bcIntent.setAction(ACTION_PROGRESO);
             int valor=i*10;
