@@ -48,6 +48,7 @@ public class Servicio extends Service {
     /** Called when the service is being created. */
     @Override
     public void onCreate() {
+        super.onCreate();
         Log.d("App","onCreate");
     }
 

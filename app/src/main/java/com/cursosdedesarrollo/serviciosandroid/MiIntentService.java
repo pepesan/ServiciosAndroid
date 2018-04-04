@@ -1,5 +1,6 @@
 package com.cursosdedesarrollo.serviciosandroid;
 
+
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
@@ -16,6 +17,11 @@ public class MiIntentService extends IntentService {
 
     public MiIntentService() {
         super("MiIntentService");
+    }
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
     }
 
     @Override
